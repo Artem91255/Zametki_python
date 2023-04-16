@@ -1,8 +1,5 @@
-def op_string(str_data):
-    list = str_data.split('-')
-    return list
+import datetime
 
-def op_column(data, count):
-    list_data = []
-    for i in range(0,count):
-        list_data.append(data)
+def get_date_now():
+    date_of_note= datetime.datetime.now()
+    return date_of_note
