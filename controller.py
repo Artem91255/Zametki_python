@@ -28,7 +28,7 @@ def add_note():
 
 def remove_this_note():
     print("Вывожу список заметок:")
-    log.show_id_of_notes()
+    log.see_all_names_and_bodys()
     name_for_delete = input("Введите уникальный номер заметки, которую необходимо удалить: ")
     log.delete_in_csv(name_for_delete)
 

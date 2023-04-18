@@ -60,18 +60,21 @@ def show_name_of_notes():
         print("")
 
 
-def delete_in_csv(uuid):
+def delete_in_csv(id):
     with open("list_of_notes.csv", encoding='utf=8') as file_name:
-        file_read = csv.reader(file_name)
+        file_read = csv.reader(file_name, lineterminator="\r", delimiter=';')
         array = list(file_read)
+        rows = 0
 
         for i in range(len(array)):
             for j in range(len(array[i])):
-                if(array[i][j].__contains__(uuid)):
-                    del array[i][j]
+                 if(array[i][j].__contains__(id)):
+                    rows = i
+
+        array.remove(array[rows])
 
     with open('list_of_notes.csv', 'w', newline='', encoding='utf=8') as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, lineterminator="\r", delimiter=';')
         writer.writerows(array)
 
 
@@ -88,14 +91,14 @@ def see_all_names_and_bodys():
         print("")
         reader = csv.DictReader(f, delimiter=";")
         for row in reader:
-            print(row['id'] + "\n "+row['name'] + ": \n"+ row['body'] + '\n' +row['date'])
-        print("")
+            print(row['name'] +' ('+row['id']+ ')'": \n"+ row['body'] + '\n' +row['date'])
+            print("")
 def see_all_notes():
     with open('list_of_notes.csv', 'r', encoding='utf=8') as f:
         print("")
         reader = csv.DictReader(f, delimiter=";")
         for row in reader:
-            print(row['name'] + ": \n"+ row['body'] + '\n' +row['date'])
+            print(row['name'] + ": \n" + row['body'] + '\n' +row['date'])
             print("")
         print("")
 def read_my_csv():
